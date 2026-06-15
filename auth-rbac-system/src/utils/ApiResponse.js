@@ -1,0 +1,26 @@
+/**
+ * Standardized API response wrapper.
+ * Ensures every successful response from the API follows the same shape:
+ * {
+ *   success: true,
+ *   statusCode: 200,
+ *   message: "...",
+ *   data: { ... },
+ *   meta: { ... } // optional (pagination etc.)
+ * }
+ */
+class ApiResponse {
+  constructor(statusCode, message, data = null, meta = null) {
+    this.success = statusCode < 400;
+    this.statusCode = statusCode;
+    this.message = message;
+    if (data !== null) this.data = data;
+    if (meta !== null) this.meta = meta;
+  }
+
+  send(res) {
+    return res.status(this.statusCode).json(this);
+  }
+}
+
+module.exports = ApiResponse;
