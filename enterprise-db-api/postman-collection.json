@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "Enterprise DB API",
+    "description": "Production-ready REST API — Node.js + Express + MySQL + Sequelize",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "BASE_URL", "value": "http://localhost:3000/api", "type": "string" }
+  ],
+  "item": [
+
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": { "method": "GET", "url": "http://localhost:3000/health" }
+        }
+      ]
+    },
+
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Get All Roles",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{BASE_URL}}/roles?page=1&limit=10&search=admin&sort=name&order=ASC",
+              "host": ["{{BASE_URL}}"],
+              "path": ["roles"],
+              "query": [
+                { "key": "page",  "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "search","value": "admin" },
+                { "key": "sort",  "value": "name" },
+                { "key": "order", "value": "ASC" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Role By ID",
+          "request": { "method": "GET", "url": "{{BASE_URL}}/roles/1" }
+        },
+        {
+          "name": "Create Role",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/roles",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"DevOps Engineer\",\n  \"description\": \"Infrastructure and CI/CD management\",\n  \"permissions\": [\"read:projects\", \"write:deployments\"],\n  \"isActive\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Role",
+          "request": {
+            "method": "PUT",
+            "url": "{{BASE_URL}}/roles/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated description\",\n  \"isActive\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Role",
+          "request": { "method": "DELETE", "url": "{{BASE_URL}}/roles/6" }
+        }
+      ]
+    },
+
+    {
+      "name": "Departments",
+      "item": [
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/departments?page=1&limit=10&isActive=true"
+          }
+        },
+        {
+          "name": "Get Department By ID",
+          "request": { "method": "GET", "url": "{{BASE_URL}}/departments/1" }
+        },
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/departments",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Data Science\",\n  \"code\": \"DS\",\n  \"description\": \"ML, AI, and analytics\",\n  \"headOfDepartment\": \"Dr. Kavya Rao\",\n  \"budget\": 3000000,\n  \"location\": \"Block D, Floor 2\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Department",
+          "request": {
+            "method": "PUT",
+            "url": "{{BASE_URL}}/departments/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"budget\": 5500000,\n  \"location\": \"Block A, Floor 3-4\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Department",
+          "request": { "method": "DELETE", "url": "{{BASE_URL}}/departments/6" }
+        }
+      ]
+    },
+
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{BASE_URL}}/users?page=1&limit=10&search=vishal&sort=firstName&order=ASC&status=active&departmentId=1",
+              "host": ["{{BASE_URL}}"],
+              "path": ["users"],
+              "query": [
+                { "key": "page",         "value": "1" },
+                { "key": "limit",        "value": "10" },
+                { "key": "search",       "value": "vishal" },
+                { "key": "sort",         "value": "firstName" },
+                { "key": "order",        "value": "ASC" },
+                { "key": "status",       "value": "active" },
+                { "key": "departmentId", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User By ID",
+          "request": { "method": "GET", "url": "{{BASE_URL}}/users/4" }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/users",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Anika\",\n  \"lastName\": \"Das\",\n  \"email\": \"anika.das@company.com\",\n  \"phone\": \"+91-9800000009\",\n  \"jobTitle\": \"Full Stack Developer\",\n  \"salary\": 95000,\n  \"hireDate\": \"2024-06-01\",\n  \"status\": \"active\",\n  \"roleId\": 4,\n  \"departmentId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "url": "{{BASE_URL}}/users/4",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobTitle\": \"Lead Backend Developer\",\n  \"salary\": 140000\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": { "method": "DELETE", "url": "{{BASE_URL}}/users/9" }
+        }
+      ]
+    },
+
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Get All Projects",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{BASE_URL}}/projects?page=1&limit=10&status=active&priority=high&departmentId=1",
+              "host": ["{{BASE_URL}}"],
+              "path": ["projects"],
+              "query": [
+                { "key": "page",         "value": "1" },
+                { "key": "limit",        "value": "10" },
+                { "key": "status",       "value": "active" },
+                { "key": "priority",     "value": "high" },
+                { "key": "departmentId", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Project By ID",
+          "request": { "method": "GET", "url": "{{BASE_URL}}/projects/1" }
+        },
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/projects",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"AI Recommendation Engine\",\n  \"description\": \"ML-powered product recommendation system\",\n  \"status\": \"planning\",\n  \"priority\": \"high\",\n  \"startDate\": \"2024-08-01\",\n  \"endDate\": \"2025-02-28\",\n  \"budget\": 1200000,\n  \"progress\": 0,\n  \"departmentId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "url": "{{BASE_URL}}/projects/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"progress\": 45,\n  \"status\": \"active\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Project",
+          "request": { "method": "DELETE", "url": "{{BASE_URL}}/projects/6" }
+        },
+        {
+          "name": "Add Member to Project",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/projects/3/members",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 7,\n  \"role\": \"contributor\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Remove Member from Project",
+          "request": { "method": "DELETE", "url": "{{BASE_URL}}/projects/3/members/7" }
+        }
+      ]
+    },
+
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Get All Tasks",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{BASE_URL}}/tasks?page=1&limit=10&status=in_progress&priority=high&projectId=1",
+              "host": ["{{BASE_URL}}"],
+              "path": ["tasks"],
+              "query": [
+                { "key": "page",       "value": "1" },
+                { "key": "limit",      "value": "10" },
+                { "key": "status",     "value": "in_progress" },
+                { "key": "priority",   "value": "high" },
+                { "key": "projectId",  "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Tasks - Filter by assignee",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/tasks?assigneeId=4&status=completed"
+          }
+        },
+        {
+          "name": "Get Task By ID",
+          "request": { "method": "GET", "url": "{{BASE_URL}}/tasks/1" }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/tasks",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Implement JWT refresh token rotation\",\n  \"description\": \"Add silent refresh with sliding window strategy\",\n  \"status\": \"todo\",\n  \"priority\": \"high\",\n  \"dueDate\": \"2024-07-15\",\n  \"estimatedHours\": 24,\n  \"loggedHours\": 0,\n  \"tags\": [\"auth\", \"security\", \"backend\"],\n  \"projectId\": 1,\n  \"assigneeId\": 4\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Task",
+          "request": {
+            "method": "PUT",
+            "url": "{{BASE_URL}}/tasks/2",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in_review\",\n  \"loggedHours\": 90,\n  \"priority\": \"critical\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Task",
+          "request": { "method": "DELETE", "url": "{{BASE_URL}}/tasks/13" }
+        }
+      ]
+    }
+  ]
+}
