@@ -1,0 +1,9 @@
+[2026-07-03 20:14:12] ERROR: Failed to start server: Unknown database 'file_mgmt_system'
+[2026-07-03 20:25:38] ERROR: Failed to write audit log: Table 'file_mgmt_system.audit_logs' doesn't exist
+[2026-07-03 20:25:38] ERROR: Failed to write api log: Table 'file_mgmt_system.api_logs' doesn't exist
+[2026-07-03 20:25:39] ERROR: Failed to write audit log: Table 'file_mgmt_system.audit_logs' doesn't exist
+[2026-07-03 20:25:39] ERROR: Failed to write api log: Table 'file_mgmt_system.api_logs' doesn't exist
+[2026-07-03 20:25:50] ERROR: Failed to write audit log: Table 'file_mgmt_system.audit_logs' doesn't exist
+[2026-07-03 20:25:50] ERROR: Failed to write api log: Table 'file_mgmt_system.api_logs' doesn't exist
+[2026-07-03 20:26:14] ERROR: Failed to write audit log: Table 'file_mgmt_system.audit_logs' doesn't exist
+[2026-07-03 20:26:14] ERROR: Failed to write api log: Table 'file_mgmt_system.api_logs' doesn't exist
